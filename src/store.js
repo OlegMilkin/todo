@@ -1,6 +1,5 @@
 let rerenderDomTree = () => {}
 
-
 let store = {
   taskList: {
     tasksData: [
