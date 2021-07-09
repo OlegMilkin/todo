@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store, {changeNewTaskText, addNewTaskText, subscribe} from './store'
+import {store} from './store';
 
-const rerenderDomTree = () => {
+const rerenderDomTree = (state) => {
   ReactDOM.render(
     <App
-      store={store}
-      changeNewTaskText={changeNewTaskText}
-      addNewTaskText={addNewTaskText}
+      store={state}
+      changeNewTaskText={store.changeNewTaskText.bind(store)}
+      addNewTaskText={store.addNewTaskText.bind(store)}
     />,
     document.getElementById('root')
   );
 }
 
-rerenderDomTree();
-subscribe(rerenderDomTree)
+rerenderDomTree(store.getState());
+store.subscribe(rerenderDomTree)

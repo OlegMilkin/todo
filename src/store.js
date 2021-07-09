@@ -1,41 +1,42 @@
-let rerenderDomTree = () => {}
-
-let store = {
-  taskList: {
-    tasksData: [
-      {
-        id: 0,
-        title: 'First task',
-      },
-      {
-        id: 1,
-        title: 'Second task',
-      }
-    ],
-    newTaskText: ''
+export let store = {
+  _state: {
+    taskList: {
+      tasksData: [
+        {
+          id: 0,
+          title: 'First task',
+        },
+        {
+          id: 1,
+          title: 'Second task',
+        }
+      ],
+      newTaskText: ''
+    }
+  },
+  getState() {
+    return this._state;
+  },
+  rerenderDomTree(){},
+  changeNewTaskText(text){
+    this._state.taskList.newTaskText = text;
+    this.rerenderDomTree(this._state);
+  },
+  addNewTaskText() {
+    let taskText = this._state.taskList.newTaskText
+    if (taskText === '') return;
+    this._state.taskList.tasksData.push({
+      id: 2,
+      title: taskText,
+    })
+    this.changeNewTaskText('');
+    this.rerenderDomTree(this._state);
+  },
+  subscribe(observer) {
+    this.rerenderDomTree = observer
   }
 }
 
-export const changeNewTaskText = (text) => {
-  store.taskList.newTaskText = text;
-  rerenderDomTree();
-}
 
-export const addNewTaskText = () => {
-  let taskText = store.taskList.newTaskText
-  if (taskText === '') return;
-  store.taskList.tasksData.push({
-    id: 2,
-    title: taskText,
-  })
-  changeNewTaskText('');
-  rerenderDomTree();
-}
 
-export default store;
-
-export const subscribe = (observer) => {
-  rerenderDomTree = observer
-}
-
-subscribe()
+//subscribe()
