@@ -1,15 +1,17 @@
 import React from 'react';
+import {addNewTaskText, changeNewTaskTextAction} from "../store";
+
 
 const NewTaskForm = (props) => {
 
   let inputTextField = React.createRef();
 
   const addNewTask = () => {
-    props.addNewTaskText()
+    props.dispatch(addNewTaskText())
   }
 
   const changeNewTaskText = () => {
-    props.changeNewTaskText(inputTextField.current.value)
+    props.dispatch(changeNewTaskTextAction(inputTextField.current.value))
   }
 
   return (

@@ -23,8 +23,7 @@ const TaskList = (props) => {
         <div className="col-lg-12 mt-5">
           <NewTaskForm
             newTaskText={props.newTaskText}
-            changeNewTaskText={props.changeNewTaskText}
-            addNewTaskText={props.addNewTaskText}
+            dispatch={props.dispatch}
           />
         </div>
       </div>

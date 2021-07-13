@@ -11,8 +11,7 @@ function App(props) {
         <TaskList
           taskList={props.store.taskList.tasksData}
           newTaskText={props.store.taskList.newTaskText}
-          changeNewTaskText={props.changeNewTaskText}
-          addNewTaskText={props.addNewTaskText}
+          dispatch={props.dispatch}
         />
       </Route>
       <Route path='/history'>

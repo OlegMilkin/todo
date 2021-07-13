@@ -7,8 +7,7 @@ const rerenderDomTree = (state) => {
   ReactDOM.render(
     <App
       store={state}
-      changeNewTaskText={store.changeNewTaskText.bind(store)}
-      addNewTaskText={store.addNewTaskText.bind(store)}
+      dispatch={store.dispatch.bind(store)}
     />,
     document.getElementById('root')
   );
