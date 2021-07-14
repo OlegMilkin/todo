@@ -1,5 +1,5 @@
 import React from 'react';
-import {addNewTaskText, changeNewTaskTextAction} from "../store";
+import {addNewTaskText, changeNewTaskTextAction} from "../redux/task-list-reducer";
 
 
 const NewTaskForm = (props) => {
