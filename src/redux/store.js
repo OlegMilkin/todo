@@ -25,6 +25,7 @@ export let store = {
   },
   dispatch(action) {
     this._state.taskList = taskListReducer(this._state.taskList, action);
+    this.rerenderDomTree(this._state);
   },
 }
 

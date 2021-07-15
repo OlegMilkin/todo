@@ -5,7 +5,7 @@ const taskListReducer = (state, action) => {
   if (action.type === ADD_NEW_TASK_TEXT) {
     let taskText = state.newTaskText
     if (taskText === '') return;
-    state.push({
+    state.tasksData.push({
       id: 2,
       title: taskText,
     })
