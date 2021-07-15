@@ -1,7 +1,21 @@
 const ADD_NEW_TASK_TEXT = 'ADD-NEW-TASK-TEXT';
 const CHANGE_NEW_TASK_TEXT = 'CHANGE-NEW-TASK-TEXT';
 
-const taskListReducer = (state, action) => {
+let initialState = {
+  tasksData: [
+    {
+      id: 0,
+      title: 'First task',
+    },
+    {
+      id: 1,
+      title: 'Second task',
+    }
+  ],
+  newTaskText: ''
+}
+
+const taskListReducer = (state = initialState, action) => {
   if (action.type === ADD_NEW_TASK_TEXT) {
     let taskText = state.newTaskText
     if (taskText === '') return;
