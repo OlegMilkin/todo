@@ -7,7 +7,14 @@ const TaskList = (props) => {
   const {taskList} = props;
 
   const tasksEl = taskList.map((task) => {
-    return <TaskItem title={task.title} key={task.id} />
+    return (
+      <TaskItem
+        title={task.title}
+        key={task.id}
+        removeTask={props.removeTask}
+        id={task.id}
+      />
+    )
   })
 
   return (

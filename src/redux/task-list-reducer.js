@@ -1,5 +1,8 @@
+import {logDOM} from "@testing-library/react";
+
 const ADD_NEW_TASK_TEXT = 'ADD-NEW-TASK-TEXT';
 const CHANGE_NEW_TASK_TEXT = 'CHANGE-NEW-TASK-TEXT';
+const REMOVE_TASK = 'REMOVE-TASK';
 
 let initialState = {
   tasksData: [
@@ -30,6 +33,11 @@ const taskListReducer = (state = initialState, action) => {
         ...state,
         newTaskText: action.text
       }
+    case REMOVE_TASK:
+      return {
+        ...state,
+        tasksData: state.tasksData.filter(task => task.id !== action.id)
+      }
     default:
       return state;
   }
@@ -41,5 +49,9 @@ export const addNewTaskText = () => ({
 export const changeNewTaskTextAction = (text) => ({
   type: CHANGE_NEW_TASK_TEXT, text
 });
+
+export const removeTask = (id) => ({
+  type: REMOVE_TASK, id
+})
 
 export default taskListReducer;

@@ -1,0 +1,6 @@
+.listItemRemove, .listItemEdit {
+    border: none;
+    background: none;
+    float: right;
+    margin: 0 5px;
+}

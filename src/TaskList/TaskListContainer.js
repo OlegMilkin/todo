@@ -1,6 +1,6 @@
 import TaskList from "./TaskList";
 import {connect} from "react-redux";
-import {addNewTaskText, changeNewTaskTextAction} from "../redux/task-list-reducer";
+import {addNewTaskText, changeNewTaskTextAction, removeTask} from "../redux/task-list-reducer";
 
 let mapStateToProps = (state) => {
   return {
@@ -16,6 +16,9 @@ let mapDispatchToProps = (dispatch) => {
     },
     updateText: (text) => {
       dispatch(changeNewTaskTextAction(text))
+    },
+    removeTask: (id) => {
+      dispatch(removeTask(id))
     }
   }
 };
