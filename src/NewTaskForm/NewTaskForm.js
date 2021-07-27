@@ -1,17 +1,15 @@
 import React from 'react';
-import {addNewTaskText, changeNewTaskTextAction} from "../redux/task-list-reducer";
-
 
 const NewTaskForm = (props) => {
 
   let inputTextField = React.createRef();
 
   const addNewTask = () => {
-    props.dispatch(addNewTaskText())
+    props.addText()
   }
 
   const changeNewTaskText = () => {
-    props.dispatch(changeNewTaskTextAction(inputTextField.current.value))
+    props.updateText(inputTextField.current.value)
   }
 
   return (

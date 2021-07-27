@@ -2,20 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import store from './redux/redux-store';
+import {Provider} from "react-redux";
 
-const rerenderDomTree = (state) => {
-  ReactDOM.render(
-    <App
-      store={state}
-      dispatch={store.dispatch.bind(store)}
-    />,
-    document.getElementById('root')
-  );
-}
-
-rerenderDomTree(store.getState());
-
-store.subscribe(() => {
-  let state = store.getState();
-  rerenderDomTree(state)
-})
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById('root')
+);

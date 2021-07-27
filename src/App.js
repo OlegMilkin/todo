@@ -1,18 +1,14 @@
 import { BrowserRouter, Route } from 'react-router-dom';
-import TaskList from './TaskList/TaskList'
 import Header from './Header/Header'
 import History from "./History/History"
+import TaskListContainer from "./TaskList/TaskListContainer";
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <Header/>
       <Route exact path='/'>
-        <TaskList
-          taskList={props.store.taskList.tasksData}
-          newTaskText={props.store.taskList.newTaskText}
-          dispatch={props.dispatch}
-        />
+        <TaskListContainer/>
       </Route>
       <Route path='/history'>
         <History/>

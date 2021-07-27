@@ -16,22 +16,30 @@ let initialState = {
 }
 
 const taskListReducer = (state = initialState, action) => {
-  if (action.type === ADD_NEW_TASK_TEXT) {
-    let taskText = state.newTaskText
-    if (taskText === '') return;
-    state.tasksData.push({
-      id: 2,
-      title: taskText,
-    })
-    //changeNewTaskTextAction('');
-  } else if (action.type === CHANGE_NEW_TASK_TEXT) {
-    state.newTaskText = action.text;
-  }
+  switch (action.type) {
+    case ADD_NEW_TASK_TEXT:
+      let taskText = state.newTaskText
+      if (taskText === '') return;
 
-  return state;
+      return {
+        ...state,
+        tasksData: [...state.tasksData, {id: 2, title: taskText}]
+      }
+    case CHANGE_NEW_TASK_TEXT:
+      return {
+        ...state,
+        newTaskText: action.text
+      }
+    default:
+      return state;
+  }
 }
 
-export const addNewTaskText = () => ({ type: ADD_NEW_TASK_TEXT });
-export const changeNewTaskTextAction = (text) => ({ type: CHANGE_NEW_TASK_TEXT, text});
+export const addNewTaskText = () => ({
+  type: ADD_NEW_TASK_TEXT
+});
+export const changeNewTaskTextAction = (text) => ({
+  type: CHANGE_NEW_TASK_TEXT, text
+});
 
 export default taskListReducer;
