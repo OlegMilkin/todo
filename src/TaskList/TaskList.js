@@ -13,6 +13,11 @@ const TaskList = (props) => {
         key={task.id}
         removeTask={props.removeTask}
         id={task.id}
+        isEditMode={task.isEditMode}
+        enableEditMode={props.enableEditMode}
+        disableEditMode={props.disableEditMode}
+        afterEditText={props.afterEditText}
+        changeEditTaskText={props.changeEditTaskText}
       />
     )
   })

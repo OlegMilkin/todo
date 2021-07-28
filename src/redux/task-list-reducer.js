@@ -1,21 +1,25 @@
-import {logDOM} from "@testing-library/react";
-
 const ADD_NEW_TASK_TEXT = 'ADD-NEW-TASK-TEXT';
 const CHANGE_NEW_TASK_TEXT = 'CHANGE-NEW-TASK-TEXT';
 const REMOVE_TASK = 'REMOVE-TASK';
+const ENABLE_EDIT_MODE = 'ENABLE-EDIT-MODE';
+const DISABLE_EDIT_MODE = 'DISABLE-EDIT-MODE';
+const CHANGE_EDIT_TASK_TEXT = 'CHANGE-EDIT-TASK-TEXT';
 
 let initialState = {
   tasksData: [
     {
       id: 0,
       title: 'First task',
+      isEditMode: false,
     },
     {
       id: 1,
       title: 'Second task',
+      isEditMode: false,
     }
   ],
-  newTaskText: ''
+  newTaskText: '',
+  afterEditText: '',
 }
 
 const taskListReducer = (state = initialState, action) => {
@@ -38,6 +42,37 @@ const taskListReducer = (state = initialState, action) => {
         ...state,
         tasksData: state.tasksData.filter(task => task.id !== action.id)
       }
+    case ENABLE_EDIT_MODE:
+      return {
+        ...state,
+        tasksData:
+          state.tasksData.map(
+            task => {
+              if (task.id === action.id) {
+                return {
+                  ...task,
+                  isEditMode: true
+                }
+              }
+              return {...task}
+            })
+      }
+    case DISABLE_EDIT_MODE:
+      return {
+        ...state,
+        tasksData: state.tasksData.map(
+          task => {
+            return {
+              ...task,
+              isEditMode: false
+            }
+          })
+      }
+    case CHANGE_EDIT_TASK_TEXT:
+      return {
+        ...state,
+        afterEditText: action.text
+      }
     default:
       return state;
   }
@@ -52,6 +87,18 @@ export const changeNewTaskTextAction = (text) => ({
 
 export const removeTask = (id) => ({
   type: REMOVE_TASK, id
+})
+
+export const enableEditModeAction = (id) => ({
+  type: ENABLE_EDIT_MODE, id
+})
+
+export const disableEditModeAction = (id) => ({
+  type: DISABLE_EDIT_MODE, id
+})
+
+export const changeEditTaskText = (text) => ({
+  type: CHANGE_EDIT_TASK_TEXT, text
 })
 
 export default taskListReducer;

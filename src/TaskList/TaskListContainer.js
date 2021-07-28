@@ -1,11 +1,12 @@
 import TaskList from "./TaskList";
 import {connect} from "react-redux";
-import {addNewTaskText, changeNewTaskTextAction, removeTask} from "../redux/task-list-reducer";
+import {addNewTaskText, changeNewTaskTextAction, removeTask, enableEditModeAction, disableEditModeAction, changeEditTaskText} from "../redux/task-list-reducer";
 
 let mapStateToProps = (state) => {
   return {
     taskList: state.taskList.tasksData,
-    newTaskText: state.taskList.newTaskText
+    newTaskText: state.taskList.newTaskText,
+    afterEditText: state.taskList.afterEditText
   }
 };
 
@@ -19,7 +20,16 @@ let mapDispatchToProps = (dispatch) => {
     },
     removeTask: (id) => {
       dispatch(removeTask(id))
-    }
+    },
+    enableEditMode: (id) => {
+      dispatch(enableEditModeAction(id))
+    },
+    disableEditMode: () => {
+      dispatch(disableEditModeAction())
+    },
+    changeEditTaskText: (text) => {
+      dispatch(changeEditTaskText(text))
+    },
   }
 };
 
