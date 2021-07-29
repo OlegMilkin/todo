@@ -6,6 +6,7 @@ const NewTaskForm = (props) => {
 
   const addNewTask = () => {
     props.addText()
+    props.updateText('')
   }
 
   const changeNewTaskText = () => {
