@@ -2,15 +2,17 @@ import React from "react";
 import classes from "./list-item.module.css";
 
 const TaskItem = (props) => {
- const editInput = React.createRef();
 
+ const editInput = React.createRef();
 
   const disableEditMode = () => {
     props.disableEditMode()
+    props.changeTaskTitle(props.id)
   }
 
   const enableEditMode = () => {
     props.enableEditMode(props.id)
+    props.changeEditTaskText(props.title)
   }
 
   const changeTaskText = () => {

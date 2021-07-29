@@ -1,6 +1,14 @@
 import TaskList from "./TaskList";
 import {connect} from "react-redux";
-import {addNewTaskText, changeNewTaskTextAction, removeTask, enableEditModeAction, disableEditModeAction, changeEditTaskText} from "../redux/task-list-reducer";
+import {
+  addNewTaskText,
+  changeNewTaskTextAction,
+  removeTask,
+  enableEditModeAction,
+  disableEditModeAction,
+  changeEditTaskText,
+  changeTaskTitle
+} from "../redux/task-list-reducer";
 
 let mapStateToProps = (state) => {
   return {
@@ -29,6 +37,9 @@ let mapDispatchToProps = (dispatch) => {
     },
     changeEditTaskText: (text) => {
       dispatch(changeEditTaskText(text))
+    },
+    changeTaskTitle: (id) => {
+      dispatch(changeTaskTitle(id))
     },
   }
 };

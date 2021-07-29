@@ -18,6 +18,7 @@ const TaskList = (props) => {
         disableEditMode={props.disableEditMode}
         afterEditText={props.afterEditText}
         changeEditTaskText={props.changeEditTaskText}
+        changeTaskTitle={props.changeTaskTitle}
       />
     )
   })

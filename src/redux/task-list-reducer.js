@@ -4,6 +4,7 @@ const REMOVE_TASK = 'REMOVE-TASK';
 const ENABLE_EDIT_MODE = 'ENABLE-EDIT-MODE';
 const DISABLE_EDIT_MODE = 'DISABLE-EDIT-MODE';
 const CHANGE_EDIT_TASK_TEXT = 'CHANGE-EDIT-TASK-TEXT';
+const CHANGE_TASK_TITLE = 'CHANGE-TASK-TITLE';
 
 let initialState = {
   tasksData: [
@@ -73,6 +74,21 @@ const taskListReducer = (state = initialState, action) => {
         ...state,
         afterEditText: action.text
       }
+    case CHANGE_TASK_TITLE:
+      return {
+        ...state,
+        tasksData:
+          state.tasksData.map(
+            task => {
+              if (task.id === action.id) {
+                return {
+                  ...task,
+                  title: state.afterEditText
+                }
+              }
+              return {...task}
+            })
+      }
     default:
       return state;
   }
@@ -99,6 +115,10 @@ export const disableEditModeAction = (id) => ({
 
 export const changeEditTaskText = (text) => ({
   type: CHANGE_EDIT_TASK_TEXT, text
+})
+
+export const changeTaskTitle = (id) => ({
+  type: CHANGE_TASK_TITLE, id
 })
 
 export default taskListReducer;
