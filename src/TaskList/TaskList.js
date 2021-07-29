@@ -19,6 +19,8 @@ const TaskList = (props) => {
         afterEditText={props.afterEditText}
         changeEditTaskText={props.changeEditTaskText}
         changeTaskTitle={props.changeTaskTitle}
+        isTaskCompleted={task.completed}
+        changeCompletedStatus={props.changeCompletedStatus}
       />
     )
   })

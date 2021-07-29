@@ -7,14 +7,15 @@ import {
   enableEditModeAction,
   disableEditModeAction,
   changeEditTaskText,
-  changeTaskTitle
+  changeTaskTitle,
+  changeCompletedStatus,
 } from "../redux/task-list-reducer";
 
 let mapStateToProps = (state) => {
   return {
     taskList: state.taskList.tasksData,
     newTaskText: state.taskList.newTaskText,
-    afterEditText: state.taskList.afterEditText
+    afterEditText: state.taskList.afterEditText,
   }
 };
 
@@ -40,6 +41,9 @@ let mapDispatchToProps = (dispatch) => {
     },
     changeTaskTitle: (id) => {
       dispatch(changeTaskTitle(id))
+    },
+    changeCompletedStatus: (id) => {
+      dispatch(changeCompletedStatus(id))
     },
   }
 };

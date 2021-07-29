@@ -19,9 +19,23 @@ const TaskItem = (props) => {
     props.changeEditTaskText(editInput.current.value)
   }
 
+  const completeToggle = () => {
+    props.changeCompletedStatus(props.id)
+  }
+
+  let labelCompleteClass = props.isTaskCompleted ? `list-group-item ${classes.listGroupItem} ${classes.listItemCompleted}`: `list-group-item ${classes.listGroupItem}`;
+
   return (
-    <label className="list-group-item">
-      <input className="form-check-input me-1" type="checkbox" value=""/>
+    <label
+      className={ labelCompleteClass }
+    >
+      <input
+        className='form-check-input me-1'
+        type="checkbox"
+        value=""
+        checked={props.isTaskCompleted}
+        onChange={ completeToggle }
+      />
       {
         props.isEditMode
           ?
