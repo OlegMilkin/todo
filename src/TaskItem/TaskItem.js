@@ -30,7 +30,7 @@ const TaskItem = (props) => {
       className={ labelCompleteClass }
     >
       <input
-        className='form-check-input me-1'
+        className={`form-check-input me-1 ${classes.itemCheckbox}`}
         type="checkbox"
         value=""
         checked={props.isTaskCompleted}
@@ -48,7 +48,9 @@ const TaskItem = (props) => {
               value={props.afterEditText}
             />
           :
-            props.title
+           <span className={classes.itemTitle}>
+            {props.title}
+           </span>
       }
         <button
           className={classes.listItemRemove}
