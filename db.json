@@ -17,6 +17,12 @@
       "title": "Third task",
       "isEditMode": false,
       "completed": false
+    },
+    {
+      "id": 4,
+      "title": "Fourth task",
+      "isEditMode": false,
+      "completed": false
     }
   ]
 }
