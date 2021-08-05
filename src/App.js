@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
-      <Route exact path='/' component={TaskList} />
+      <Route exact path='/task-list' component={TaskList} />
       <Route path='/history' component={History} />
     </BrowserRouter>
   );
