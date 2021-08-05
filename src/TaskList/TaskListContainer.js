@@ -9,6 +9,7 @@ import {
   changeEditTaskText,
   changeTaskTitle,
   changeCompletedStatus,
+  setTasksDataAC,
 } from "../redux/task-list-reducer";
 
 let mapStateToProps = (state) => {
@@ -45,6 +46,9 @@ let mapDispatchToProps = (dispatch) => {
     changeCompletedStatus: (id) => {
       dispatch(changeCompletedStatus(id))
     },
+    setTasksData: (tasks) => {
+      dispatch(setTasksDataAC(tasks))
+    }
   }
 };
 

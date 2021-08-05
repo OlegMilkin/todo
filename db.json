@@ -1,0 +1,22 @@
+{
+  "tasksData": [
+    {
+      "id": 0,
+      "title": "First task",
+      "isEditMode": false,
+      "completed": false
+    },
+    {
+      "id": 1,
+      "title": "Second task",
+      "isEditMode": false,
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "Third task",
+      "isEditMode": false,
+      "completed": false
+    }
+  ]
+}
