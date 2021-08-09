@@ -7,11 +7,13 @@ const CHANGE_EDIT_TASK_TEXT = 'CHANGE-EDIT-TASK-TEXT';
 const CHANGE_TASK_TITLE = 'CHANGE-TASK-TITLE';
 const CHANGE_COMPLETED_STATUS = 'CHANGE-COMPLETED-STATUS';
 const SET_TASKS_DATA = 'SET_TASKS_DATA';
+const TOGGLE_LOADER = 'TOGGLE-LOADER';
 
 let initialState = {
   tasksData: [],
   newTaskText: '',
   afterEditText: '',
+  isLoading: true,
 }
 
 const taskListReducer = (state = initialState, action) => {
@@ -98,15 +100,20 @@ const taskListReducer = (state = initialState, action) => {
         ...state,
         tasksData: [...action.tasks]
       }
+    case TOGGLE_LOADER:
+      return {
+        ...state,
+        isLoading: false
+      }
     default:
       return state;
   }
 }
 
-export const addNewTaskText = () => ({
+export const addText = () => ({
   type: ADD_NEW_TASK_TEXT
 });
-export const changeNewTaskTextAction = (text) => ({
+export const updateText = (text) => ({
   type: CHANGE_NEW_TASK_TEXT, text
 });
 
@@ -114,11 +121,11 @@ export const removeTask = (id) => ({
   type: REMOVE_TASK, id
 })
 
-export const enableEditModeAction = (id) => ({
+export const enableEditMode = (id) => ({
   type: ENABLE_EDIT_MODE, id
 })
 
-export const disableEditModeAction = (id) => ({
+export const disableEditMode = (id) => ({
   type: DISABLE_EDIT_MODE, id
 })
 
@@ -134,8 +141,12 @@ export const changeCompletedStatus = (id) => ({
   type: CHANGE_COMPLETED_STATUS, id
 })
 
-export const setTasksDataAC = (tasks) => ({
+export const setTasksData = (tasks) => ({
   type: SET_TASKS_DATA, tasks
+})
+
+export const toggleLoader = () => ({
+  type: TOGGLE_LOADER
 })
 
 export default taskListReducer;

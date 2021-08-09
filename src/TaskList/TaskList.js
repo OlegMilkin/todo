@@ -3,13 +3,13 @@ import TaskItem from '../TaskItem/TaskItem';
 import NewTaskForm from '../NewTaskForm/NewTaskForm';
 import * as axios from 'axios';
 
-
 class TaskList extends React.Component {
 
   componentDidMount() {
     axios.get('http://localhost:3000/tasksData')
       .then(response => {
         this.props.setTasksData(response.data)
+        this.props.toggleLoader()
     })
   }
 
@@ -37,13 +37,25 @@ class TaskList extends React.Component {
       <div className='container'>
         <div className="row">
           <div className="col-lg-12">
-            <div className="list-group">
-              {tasksEl}
+            <div
+              className="list-group"
+              style={{paddingTop: '20px'}}
+            >
+              {
+                this.props.isLoading
+                ?
+                  <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-secondary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                : tasksEl
+              }
             </div>
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-12 mt-5">
+          <div className="col-lg-12">
             <NewTaskForm
               newTaskText={this.props.newTaskText}
               addText={this.props.addText}

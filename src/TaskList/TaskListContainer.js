@@ -1,15 +1,16 @@
 import TaskList from "./TaskList";
 import {connect} from "react-redux";
 import {
-  addNewTaskText,
-  changeNewTaskTextAction,
+  addText,
+  updateText,
   removeTask,
-  enableEditModeAction,
-  disableEditModeAction,
+  enableEditMode,
+  disableEditMode,
   changeEditTaskText,
   changeTaskTitle,
   changeCompletedStatus,
-  setTasksDataAC,
+  setTasksData,
+  toggleLoader,
 } from "../redux/task-list-reducer";
 
 let mapStateToProps = (state) => {
@@ -17,40 +18,23 @@ let mapStateToProps = (state) => {
     taskList: state.taskList.tasksData,
     newTaskText: state.taskList.newTaskText,
     afterEditText: state.taskList.afterEditText,
+    isLoading: state.taskList.isLoading,
   }
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    addText: () => {
-      dispatch(addNewTaskText())
-    },
-    updateText: (text) => {
-      dispatch(changeNewTaskTextAction(text))
-    },
-    removeTask: (id) => {
-      dispatch(removeTask(id))
-    },
-    enableEditMode: (id) => {
-      dispatch(enableEditModeAction(id))
-    },
-    disableEditMode: () => {
-      dispatch(disableEditModeAction())
-    },
-    changeEditTaskText: (text) => {
-      dispatch(changeEditTaskText(text))
-    },
-    changeTaskTitle: (id) => {
-      dispatch(changeTaskTitle(id))
-    },
-    changeCompletedStatus: (id) => {
-      dispatch(changeCompletedStatus(id))
-    },
-    setTasksData: (tasks) => {
-      dispatch(setTasksDataAC(tasks))
-    }
+let TaskListContainer = connect(
+  mapStateToProps,
+  {
+    addText,
+    updateText,
+    removeTask,
+    enableEditMode,
+    disableEditMode,
+    changeEditTaskText,
+    changeTaskTitle,
+    changeCompletedStatus,
+    setTasksData,
+    toggleLoader,
   }
-};
-
-let TaskListContainer = connect(mapStateToProps, mapDispatchToProps)(TaskList)
+  )(TaskList)
 export default TaskListContainer;
