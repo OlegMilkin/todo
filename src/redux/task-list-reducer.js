@@ -1,3 +1,5 @@
+import {tasksAPI} from '../api/api'
+
 const ADD_NEW_TASK_TEXT = 'ADD-NEW-TASK-TEXT';
 const CHANGE_NEW_TASK_TEXT = 'CHANGE-NEW-TASK-TEXT';
 const REMOVE_TASK = 'REMOVE-TASK';
@@ -5,7 +7,7 @@ const ENABLE_EDIT_MODE = 'ENABLE-EDIT-MODE';
 const DISABLE_EDIT_MODE = 'DISABLE-EDIT-MODE';
 const CHANGE_EDIT_TASK_TEXT = 'CHANGE-EDIT-TASK-TEXT';
 const CHANGE_TASK_TITLE = 'CHANGE-TASK-TITLE';
-const CHANGE_COMPLETED_STATUS = 'CHANGE-COMPLETED-STATUS';
+//const CHANGE_COMPLETED_STATUS = 'CHANGE-COMPLETED-STATUS';
 const SET_TASKS_DATA = 'SET_TASKS_DATA';
 
 let initialState = {
@@ -80,19 +82,19 @@ const taskListReducer = (state = initialState, action) => {
               return {...task}
             })
       }
-    case CHANGE_COMPLETED_STATUS:
-      return {
-        ...state,
-        tasksData: state.tasksData.map(task => {
-          if (task.id === action.id) {
-            return {
-              ...task,
-              completed: !task.completed
-            }
-          }
-          return {...task}
-        })
-      }
+    // case CHANGE_COMPLETED_STATUS:
+    //   return {
+    //     ...state,
+    //     tasksData: state.tasksData.map(task => {
+    //       if (task.id === action.id) {
+    //         return {
+    //           ...task,
+    //           completed: !task.completed
+    //         }
+    //       }
+    //       return {...task}
+    //     })
+    //   }
     case SET_TASKS_DATA:
       return {
         ...state,
@@ -130,12 +132,44 @@ export const changeTaskTitle = (id) => ({
   type: CHANGE_TASK_TITLE, id
 })
 
-export const changeCompletedStatus = (id) => ({
-  type: CHANGE_COMPLETED_STATUS, id
-})
+// export const changeCompletedStatus = (id) => ({
+//   type: CHANGE_COMPLETED_STATUS, id
+// })
 
 export const setTasksDataAC = (tasks) => ({
   type: SET_TASKS_DATA, tasks
 })
+
+export const getTasks = () => {
+  return async (dispatch) => {
+    try {
+      let response = await tasksAPI.getTasks()
+      dispatch(setTasksDataAC(response))
+    } catch(error) {
+      console.log(error)
+    }
+  }
+}
+
+export const removeThunk = (taskId) => {
+  return async (dispatch) => {
+    await tasksAPI.removeTask(taskId)
+    dispatch(getTasks())
+  }
+}
+
+export const addTaskThunk = (taskText) => {
+  return async (dispatch) => {
+    await tasksAPI.addTaskItem(taskText)
+    dispatch(getTasks())
+  }
+}
+
+export const updateStatusThunk = (taskItem) => {
+  return async (dispatch) => {
+    await tasksAPI.updateTaskStatus(taskItem)
+    dispatch(getTasks())
+  }
+}
 
 export default taskListReducer;

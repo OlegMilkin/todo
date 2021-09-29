@@ -20,7 +20,8 @@ const TaskItem = (props) => {
   }
 
   const completeToggle = () => {
-    props.changeCompletedStatus(props.id)
+    //props.changeCompletedStatus(props.id)
+    props.updateStatusThunk(props.taskItem)
   }
 
   let labelCompleteClass = props.isTaskCompleted ? `list-group-item ${classes.listGroupItem} ${classes.listItemCompleted}`: `list-group-item ${classes.listGroupItem}`;
@@ -54,7 +55,7 @@ const TaskItem = (props) => {
       }
         <button
           className={classes.listItemRemove}
-          onClick={ () => { props.removeTask(props.id) }}
+          onClick={ () => { props.removeThunk(props.id) }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash"
                viewBox="0 0 16 16">

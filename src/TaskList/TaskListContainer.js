@@ -9,9 +9,10 @@ import {
   changeTaskTitle,
   changeCompletedStatus,
   setTasksDataAC,
+  getTasks,
 } from "../redux/task-list-reducer";
+import {removeThunk, addTaskThunk, updateStatusThunk} from '../redux/task-list-reducer';
 import React from "react";
-import * as axios from "axios";
 import TaskList from "./TaskList";
 
 let mapStateToProps = (state) => {
@@ -45,38 +46,48 @@ let mapDispatchToProps = (dispatch) => {
     changeTaskTitle: (id) => {
       dispatch(changeTaskTitle(id))
     },
-    changeCompletedStatus: (id) => {
-      dispatch(changeCompletedStatus(id))
-    },
+    // changeCompletedStatus: (id) => {
+    //   dispatch(changeCompletedStatus(id))
+    // },
     setTasksData: (tasks) => {
       dispatch(setTasksDataAC(tasks))
-    }
+    },
+    getTasks: () => {
+      dispatch(getTasks())
+    },
+    removeThunk: (id) => {
+      dispatch(removeThunk(id))
+    },
+    addTaskThunk: (taskText) => {
+      dispatch(addTaskThunk(taskText))
+    },
+    updateStatusThunk: (taskItem, status) => {
+      dispatch(updateStatusThunk(taskItem, status))
+    },
   }
 };
 
 class TaskListAPI extends React.Component {
 
   componentDidMount() {
-    axios.get('http://localhost:3000/tasksData')
-      .then(response => {
-        this.props.setTasksData(response.data)
-      })
+    this.props.getTasks()
   }
 
   render() {
     return (
       <TaskList
         taskList={this.props.taskList}
-        removeTask={this.props.removeTask}
+        removeThunk={this.props.removeThunk}
         enableEditMode={this.props.enableEditMode}
         disableEditMode={this.props.disableEditMode}
         afterEditText={this.props.afterEditText}
         changeEditTaskText={this.props.changeEditTaskText}
         changeTaskTitle={this.props.changeTaskTitle}
-        changeCompletedStatus={this.props.changeCompletedStatus}
+        //changeCompletedStatus={this.props.changeCompletedStatus}
         newTaskText={this.props.newTaskText}
-        addText={this.props.addText}
         updateText={this.props.updateText}
+        addTaskThunk={this.props.addTaskThunk}
+        updateStatusThunk={this.props.updateStatusThunk}
       />
     )
   }

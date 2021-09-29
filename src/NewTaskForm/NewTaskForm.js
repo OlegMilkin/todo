@@ -5,8 +5,7 @@ const NewTaskForm = (props) => {
   let inputTextField = React.createRef();
 
   const addNewTask = () => {
-    props.addText()
-    props.updateText('')
+    props.addTaskThunk(inputTextField.current.value)
   }
 
   const changeNewTaskText = () => {

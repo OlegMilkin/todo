@@ -7,9 +7,10 @@ const TaskList = (props) => {
   let tasksEl = props.taskList.map((task) => {
     return (
       <TaskItem
+        taskItem={task}
         title={task.title}
         key={task.id}
-        removeTask={props.removeTask}
+        removeThunk={props.removeThunk}
         id={task.id}
         isEditMode={task.isEditMode}
         enableEditMode={props.enableEditMode}
@@ -18,7 +19,8 @@ const TaskList = (props) => {
         changeEditTaskText={props.changeEditTaskText}
         changeTaskTitle={props.changeTaskTitle}
         isTaskCompleted={task.completed}
-        changeCompletedStatus={props.changeCompletedStatus}
+        //changeCompletedStatus={props.changeCompletedStatus}
+        updateStatusThunk={props.updateStatusThunk}
       />
     )
   })
@@ -35,7 +37,7 @@ const TaskList = (props) => {
       <div className="row">
         <div className="col-lg-12 mt-5">
           <NewTaskForm
-            newTaskText={props.newTaskText}
+            addTaskThunk={props.addTaskThunk}
             addText={props.addText}
             updateText={props.updateText}
           />
