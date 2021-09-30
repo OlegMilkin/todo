@@ -1,11 +1,6 @@
 {
   "tasksData": [
     {
-      "title": "First task",
-      "completed": false,
-      "id": 3
-    },
-    {
       "title": "Second task",
       "completed": false,
       "id": 4
@@ -16,7 +11,7 @@
       "id": 5
     },
     {
-      "title": "dfdf",
+      "title": "ghfghfgh",
       "completed": false,
       "id": 6
     }
