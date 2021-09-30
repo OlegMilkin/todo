@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react'
 
-const NewTaskForm = (props) => {
+const NewTaskForm = ({addTaskThunk}) => {
 
   let inputTextField = React.createRef();
 
+  let [newTaskText, setNewTaskText] = useState('')
+
   const addNewTask = () => {
-    props.addTaskThunk(inputTextField.current.value)
+    addTaskThunk(inputTextField.current.value)
+    setNewTaskText('')
   }
 
   const changeNewTaskText = () => {
-    props.updateText(inputTextField.current.value)
+    setNewTaskText(inputTextField.current.value)
   }
 
   return (
@@ -18,9 +21,9 @@ const NewTaskForm = (props) => {
         <input
           type="text"
           className="form-control"
-          placeholder='Add new task'
+          placeholder="Add new task"
           onChange={changeNewTaskText}
-          value={props.newTaskText}
+          value={newTaskText}
           ref={inputTextField}
         />
         <button

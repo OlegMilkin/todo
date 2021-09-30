@@ -1,22 +1,19 @@
 {
   "tasksData": [
     {
-      "title": "Second",
-      "isEditMode": false,
+      "title": "First task",
       "completed": false,
-      "id": 1
-    },
-    {
-      "title": "Third",
-      "isEditMode": false,
-      "completed": false,
-      "id": 2
-    },
-    {
-      "title": "fdgdfgdfg",
-      "isEditMode": false,
-      "completed": true,
       "id": 3
+    },
+    {
+      "title": "Second task",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "title": "Third task",
+      "completed": false,
+      "id": 5
     }
   ]
 }

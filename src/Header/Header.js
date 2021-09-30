@@ -8,7 +8,7 @@ const Header = () => {
       <div className="container">
         <NavLink
           className="navbar-brand"
-          to='/task-list'
+          to='/'
         >
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMCqW1OuIKW2TyHKRrmjB7I2dy7aaFHktOSJoF2_fR6rBbtXZC8KryZgQWKxL8ResD8Bs&usqp=CAU"
@@ -32,13 +32,6 @@ const Header = () => {
           id="navbarNavAltMarkup"
         >
           <div className="navbar-nav">
-            <NavLink
-              className="nav-link"
-              to='/task-list'
-              activeClassName='active'
-            >
-              Tasks List
-            </NavLink>
             <NavLink
               className="nav-link"
               to='/history'

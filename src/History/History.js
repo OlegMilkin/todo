@@ -1,11 +1,11 @@
-import React from "react"
+import React from 'react'
 
 const History = () => {
   return (
     <div className='container'>
       <div className="row">
         <div className='col-lg-12'>
-          History
+          History will be soon
         </div>
       </div>
     </div>
