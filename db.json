@@ -12,8 +12,13 @@
     },
     {
       "title": "Third task",
-      "completed": false,
+      "completed": true,
       "id": 5
+    },
+    {
+      "title": "dfdf",
+      "completed": false,
+      "id": 6
     }
   ]
 }
