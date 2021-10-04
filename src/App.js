@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './Header/Header'
-import History from './History/History'
+import Auth from './Auth/Auth'
 import TaskListContainer from './TaskList/TaskListContainer'
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
       <Route exact path='/'>
         <TaskListContainer/>
       </Route>
-      <Route path='/history'>
-        <History/>
+      <Route path='/auth'>
+        <Auth/>
       </Route>
     </BrowserRouter>
   );

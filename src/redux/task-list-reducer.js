@@ -1,4 +1,4 @@
-import {tasksAPI} from '../api/api'
+import {tasksAPI, authAPI} from '../api/api'
 
 const taskSectionPrefix = 'TASK_SECTION'
 
@@ -72,6 +72,17 @@ export const changeTaskTitleThunk = (id, titleText) => {
   return async (dispatch) => {
     try {
       await tasksAPI.changeTaskTitle(id, titleText)
+      dispatch(getTasks())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const registerThunk = (email, password) => {
+  return async (dispatch) => {
+    try {
+      await authAPI.registerUser(email, password)
       dispatch(getTasks())
     } catch (error) {
       console.log(error)

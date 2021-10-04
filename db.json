@@ -15,5 +15,12 @@
       "completed": false,
       "id": 6
     }
+  ],
+  "users": [
+    {
+      "email": "olegek.milkin@gmail.com",
+      "password": "$2a$10$1r1B5A9uL.aAEqK4h2mHa.f2DpfP3OkpEse52WgyARUZzf0NrX8tS",
+      "id": 1
+    }
   ]
 }

@@ -34,10 +34,10 @@ const Header = () => {
           <div className="navbar-nav">
             <NavLink
               className="nav-link"
-              to='/history'
+              to='/auth'
               activeClassName='active'
             >
-              History
+              Login/Register
             </NavLink>
           </div>
         </div>
