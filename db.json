@@ -31,6 +31,11 @@
       "email": "sdf@sdf.com",
       "password": "$2a$10$2wxxdt.lFDlC82kIwM92.uMWFrl/i1kWmvWgTe5qM8eXgvpoe7fLy",
       "id": 2
+    },
+    {
+      "email": "trs@gmail.com",
+      "password": "$2a$10$tj0mDzo391tTP3Ts579KaedSE8X1DIpZy46nPK1akznt6EiuW9rre",
+      "id": 3
     }
   ]
 }

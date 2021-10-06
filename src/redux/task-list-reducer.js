@@ -82,14 +82,12 @@ export const changeTaskTitleThunk = (id, titleText) => {
 
 export const registerThunk = (email, password) => {
   return async (dispatch) => {
-      let response = await authAPI.registerUser(email, password)
-
-
-
-    // if (!response) {
-    //
-    //     dispatch(stopSubmit('registration', {_error: 'Some error'}));
-    //   }
+    try {
+      await authAPI.registerUser(email, password)
+    } catch (error) {
+      let msg = error.response.data
+      dispatch(stopSubmit('registration', {_error: msg}));
+    }
   }
 }
 

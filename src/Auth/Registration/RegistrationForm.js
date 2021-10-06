@@ -7,6 +7,11 @@ let RegistrationForm = ({handleSubmit, error}) => {
     <form onSubmit={handleSubmit}>
       <div
         className="mb-3 mt-5">
+        { error &&
+        <div className="alert alert-danger">
+          { error }
+        </div>
+        }
         <label
           htmlFor="register-email"
           className="form-label"
@@ -40,11 +45,6 @@ let RegistrationForm = ({handleSubmit, error}) => {
           id="register-password"
           type="password"
         />
-        { error &&
-        <div style={{ border: "1px solid red" }}>
-          { error }
-        </div>
-        }
       </div>
       <button
         className="btn btn-success"

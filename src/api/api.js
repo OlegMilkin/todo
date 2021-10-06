@@ -42,8 +42,5 @@ export const authAPI = {
   registerUser(email, password) {
     return instance.post('/register', {email, password})
     .then(response => response.data)
-    .catch(function (response) {
-      console.log(response);
-    })
   }
 }
