@@ -4,9 +4,11 @@ import {stopSubmit} from 'redux-form'
 const taskSectionPrefix = 'TASK_SECTION'
 
 const SET_TASKS_DATA = `${taskSectionPrefix}/SET_TASKS_DATA`
+const SET_AS_LOGGED = `${taskSectionPrefix}/SET_AS_LOGGINED`
 
 let initialState = {
   tasksData: [],
+  isLogged: !!localStorage.getItem('token')
 }
 
 const taskListReducer = (state = initialState, action) => {
@@ -16,10 +18,19 @@ const taskListReducer = (state = initialState, action) => {
         ...state,
         tasksData: [...action.tasks]
       }
+    case SET_AS_LOGGED:
+      return {
+        ...state,
+        isLogged: true
+      }
     default:
       return state;
   }
 }
+
+export const setAsLogged = () => ({
+    type: SET_AS_LOGGED
+})
 
 export const setTasksDataAC = (tasks) => ({
   type: SET_TASKS_DATA, tasks
@@ -83,7 +94,9 @@ export const changeTaskTitleThunk = (id, titleText) => {
 export const registerThunk = (email, password) => {
   return async (dispatch) => {
     try {
-      await authAPI.registerUser(email, password)
+      let response = await authAPI.registerUser(email, password)
+      localStorage.setItem('token', response.accessToken)
+      dispatch(setAsLogged())
     } catch (error) {
       let msg = error.response.data
       dispatch(stopSubmit('registration', {_error: msg}));

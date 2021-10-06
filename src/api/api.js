@@ -2,7 +2,9 @@ import * as axios from 'axios'
 
 const instance = axios.create({
   withCredentials: true,
-
+  headers: {
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9sZWcuaHRtQGdtYWlsLmNvbSIsImlhdCI6MTYzMzUzODI0MiwiZXhwIjoxNjMzNTQxODQyLCJzdWIiOiIyIn0.dm9SegM6k_uPNOzVY-pjaI5z7tfon33wy3FPh2CGcBY'
+  },
   baseURL: 'http://localhost:3001/',
 })
 
