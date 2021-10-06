@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { required, renderField } from '../../helpers/validators'
+import {required, email, renderField} from '../../helpers/validators'
 
 let RegistrationForm = ({handleSubmit, error}) => {
   return (
@@ -22,7 +22,7 @@ let RegistrationForm = ({handleSubmit, error}) => {
           placeholder={"Email address"}
           component={ renderField }
           name={"email"}
-          validate={[required]}
+          validate={[required, email]}
           className="form-control"
           id="register-email"
           type="text"
