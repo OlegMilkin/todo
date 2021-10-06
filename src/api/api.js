@@ -40,7 +40,10 @@ export const tasksAPI = {
 
 export const authAPI = {
   registerUser(email, password) {
-    instance.post('/register', {email, password})
+    return instance.post('/register', {email, password})
     .then(response => response.data)
+    .catch(function (response) {
+      console.log(response);
+    })
   }
 }

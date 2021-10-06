@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login/Login'
-import Registration from './Registration/Registration'
+import RegistrationContainer from './Registration/RegistrationContainer'
 
 const Auth = () => {
   return (
@@ -12,7 +12,7 @@ const Auth = () => {
         </div>
         <div className="col-lg-6 col-sm-12">
           <h2 className='mt-5'>Registration</h2>
-          <Registration />
+          <RegistrationContainer />
         </div>
       </div>
     </div>

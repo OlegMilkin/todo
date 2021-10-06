@@ -1,4 +1,5 @@
 import {tasksAPI, authAPI} from '../api/api'
+import {stopSubmit} from 'redux-form'
 
 const taskSectionPrefix = 'TASK_SECTION'
 
@@ -81,12 +82,14 @@ export const changeTaskTitleThunk = (id, titleText) => {
 
 export const registerThunk = (email, password) => {
   return async (dispatch) => {
-    try {
-      await authAPI.registerUser(email, password)
-      dispatch(getTasks())
-    } catch (error) {
-      console.log(error)
-    }
+      let response = await authAPI.registerUser(email, password)
+
+
+
+    // if (!response) {
+    //
+    //     dispatch(stopSubmit('registration', {_error: 'Some error'}));
+    //   }
   }
 }
 
