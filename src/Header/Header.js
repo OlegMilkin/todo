@@ -1,8 +1,15 @@
 import React from "react"
 import './header.css'
-import {NavLink} from "react-router-dom"
+import { NavLink } from 'react-router-dom'
+import { connect } from "react-redux";
+import { logoutThunk } from '../redux/task-list-reducer'
 
-const Header = () => {
+const Header = (props) => {
+
+  const logoutHandler = () => {
+    props.logoutThunk()
+  }
+
   return (
     <nav className="header navbar navbar-expand-lg navbar-light">
       <div className="container">
@@ -32,13 +39,24 @@ const Header = () => {
           id="navbarNavAltMarkup"
         >
           <div className="navbar-nav">
-            <NavLink
-              className="nav-link"
-              to='/auth'
-              activeClassName='active'
-            >
-              Login/Register
-            </NavLink>
+            {
+              props.isLogged
+              ?
+                <button
+                  className="btn"
+                  onClick={ logoutHandler }
+                >
+                  Logout
+                </button>
+              :
+                <NavLink
+                  className="nav-link"
+                  to='/auth'
+                  activeClassName='active'
+                >
+                  Login/Register
+                </NavLink>
+            }
           </div>
         </div>
       </div>
@@ -46,4 +64,10 @@ const Header = () => {
   )
 }
 
-export default Header
+let mapStateToProps = (state) => {
+  return {
+    isLogged: state.taskList.isLogged
+  }
+}
+
+export default connect(mapStateToProps, {logoutThunk})(Header)

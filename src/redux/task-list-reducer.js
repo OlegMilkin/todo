@@ -21,15 +21,15 @@ const taskListReducer = (state = initialState, action) => {
     case SET_AS_LOGGED:
       return {
         ...state,
-        isLogged: true
+        isLogged: action.status
       }
     default:
       return state;
   }
 }
 
-export const setAsLogged = () => ({
-    type: SET_AS_LOGGED
+export const toggleLoggedStatus = (status) => ({
+  type: SET_AS_LOGGED, status
 })
 
 export const setTasksDataAC = (tasks) => ({
@@ -95,12 +95,21 @@ export const registerThunk = (email, password) => {
   return async (dispatch) => {
     try {
       let response = await authAPI.registerUser(email, password)
-      localStorage.setItem('token', response.accessToken)
-      dispatch(setAsLogged())
+      authAPI.setStorageToken(response.accessToken)
+      authAPI.setHeaderToken()
+      dispatch(toggleLoggedStatus(true))
     } catch (error) {
       let msg = error.response.data
       dispatch(stopSubmit('registration', {_error: msg}));
     }
+  }
+}
+
+export const logoutThunk = () => {
+  return (dispatch) => {
+    authAPI.unSetHeaderToken()
+    authAPI.unSetStorageToken()
+    dispatch(toggleLoggedStatus(false))
   }
 }
 

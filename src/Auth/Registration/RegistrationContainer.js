@@ -5,14 +5,23 @@ import {registerThunk} from '../../redux/task-list-reducer'
 
 function RegistrationContainer(props) {
 
-  const {registerThunk} = props
+  const {registerThunk, isLogged} = props
 
   return (
-    <Registration registerThunk={registerThunk}/>
+    <Registration
+      registerThunk={registerThunk}
+      isLogged={isLogged}
+    />
   )
 }
 
-export default connect(null,
+let mapStateToProps = (state) => {
+  return {
+    isLogged: state.taskList.isLogged
+  }
+}
+
+export default connect(mapStateToProps,
   {
     registerThunk
   }

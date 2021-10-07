@@ -1,10 +1,6 @@
 import * as axios from 'axios'
 
 const instance = axios.create({
-  withCredentials: true,
-  headers: {
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9sZWcuaHRtQGdtYWlsLmNvbSIsImlhdCI6MTYzMzUzODI0MiwiZXhwIjoxNjMzNTQxODQyLCJzdWIiOiIyIn0.dm9SegM6k_uPNOzVY-pjaI5z7tfon33wy3FPh2CGcBY'
-  },
   baseURL: 'http://localhost:3001/',
 })
 
@@ -45,5 +41,18 @@ export const authAPI = {
   registerUser(email, password) {
     return instance.post('/register', {email, password})
     .then(response => response.data)
+  },
+  setHeaderToken() {
+    let authToken = localStorage.getItem('token')
+    instance.defaults.headers.common['Authorization'] = `Bearer ${authToken}`
+  },
+  unSetHeaderToken() {
+      delete instance.defaults.headers.common['Authorization']
+  },
+  setStorageToken(token) {
+    localStorage.setItem('token', token)
+  },
+  unSetStorageToken(token) {
+    localStorage.removeItem('token')
   }
 }
