@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Registration from './Registration'
-import {registerThunk} from '../../redux/task-list-reducer'
+import { registerThunk } from '../../redux/auth-reducer'
 
 function RegistrationContainer(props) {
 
@@ -17,7 +17,7 @@ function RegistrationContainer(props) {
 
 let mapStateToProps = (state) => {
   return {
-    isLogged: state.taskList.isLogged
+    isLogged: state.auth.isLogged
   }
 }
 

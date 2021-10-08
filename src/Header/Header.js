@@ -2,7 +2,7 @@ import React from "react"
 import './header.css'
 import { NavLink } from 'react-router-dom'
 import { connect } from "react-redux";
-import { logoutThunk } from '../redux/task-list-reducer'
+import { logoutThunk } from '../redux/auth-reducer'
 
 const Header = (props) => {
 
@@ -54,7 +54,7 @@ const Header = (props) => {
                   to='/auth'
                   activeClassName='active'
                 >
-                  Login/Register
+                  Login/Registration
                 </NavLink>
             }
           </div>

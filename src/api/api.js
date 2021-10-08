@@ -1,4 +1,5 @@
 import * as axios from 'axios'
+import { getFromLocalStorage } from '../helpers/local-storage'
 
 const instance = axios.create({
   baseURL: 'http://localhost:3001/',
@@ -17,7 +18,8 @@ export const tasksAPI = {
     return instance.post('tasksData',
       {
         "title": taskText,
-        "completed": false
+        "completed": false,
+        "userId": Number(getFromLocalStorage('userId'))
       })
       .then(response => response.data)
   },
@@ -38,6 +40,10 @@ export const tasksAPI = {
 }
 
 export const authAPI = {
+  loginUser(email, password) {
+    return instance.post('/login', {email, password})
+      .then(response => response.data)
+  },
   registerUser(email, password) {
     return instance.post('/register', {email, password})
     .then(response => response.data)
@@ -48,11 +54,5 @@ export const authAPI = {
   },
   unSetHeaderToken() {
       delete instance.defaults.headers.common['Authorization']
-  },
-  setStorageToken(token) {
-    localStorage.setItem('token', token)
-  },
-  unSetStorageToken(token) {
-    localStorage.removeItem('token')
   }
 }

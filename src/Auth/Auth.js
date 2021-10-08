@@ -1,5 +1,5 @@
 import React from 'react'
-import Login from './Login/Login'
+import LoginContainer from './Login/LoginContainer'
 import RegistrationContainer from './Registration/RegistrationContainer'
 
 const Auth = () => {
@@ -8,7 +8,7 @@ const Auth = () => {
       <div className="row">
         <div className="col-lg-6 col-sm-12">
           <h2 className='mt-5'>Login</h2>
-          <Login />
+          <LoginContainer />
         </div>
         <div className="col-lg-6 col-sm-12">
           <h2 className='mt-5'>Registration</h2>

@@ -45,7 +45,6 @@ class TaskListContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     taskList: state.taskList.tasksData,
-    isLogged: state.taskList.isLogged
   }
 };
 

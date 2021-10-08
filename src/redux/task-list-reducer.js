@@ -1,14 +1,12 @@
-import {tasksAPI, authAPI} from '../api/api'
-import {stopSubmit} from 'redux-form'
+import { tasksAPI } from '../api/api'
+import { getFromLocalStorage } from '../helpers/local-storage'
 
 const taskSectionPrefix = 'TASK_SECTION'
 
 const SET_TASKS_DATA = `${taskSectionPrefix}/SET_TASKS_DATA`
-const SET_AS_LOGGED = `${taskSectionPrefix}/SET_AS_LOGGINED`
 
 let initialState = {
   tasksData: [],
-  isLogged: !!localStorage.getItem('token')
 }
 
 const taskListReducer = (state = initialState, action) => {
@@ -18,19 +16,10 @@ const taskListReducer = (state = initialState, action) => {
         ...state,
         tasksData: [...action.tasks]
       }
-    case SET_AS_LOGGED:
-      return {
-        ...state,
-        isLogged: action.status
-      }
     default:
       return state;
   }
 }
-
-export const toggleLoggedStatus = (status) => ({
-  type: SET_AS_LOGGED, status
-})
 
 export const setTasksDataAC = (tasks) => ({
   type: SET_TASKS_DATA, tasks
@@ -40,7 +29,9 @@ export const getTasks = () => {
   return async (dispatch) => {
     try {
       let response = await tasksAPI.getTasks()
-      dispatch(setTasksDataAC(response))
+      let userId = Number(getFromLocalStorage('userId'))
+      let tasks = response.filter(task => task.userId === userId)
+      dispatch(setTasksDataAC(tasks))
     } catch (error) {
       console.log(error)
     }
@@ -88,28 +79,6 @@ export const changeTaskTitleThunk = (id, titleText) => {
     } catch (error) {
       console.log(error)
     }
-  }
-}
-
-export const registerThunk = (email, password) => {
-  return async (dispatch) => {
-    try {
-      let response = await authAPI.registerUser(email, password)
-      authAPI.setStorageToken(response.accessToken)
-      authAPI.setHeaderToken()
-      dispatch(toggleLoggedStatus(true))
-    } catch (error) {
-      let msg = error.response.data
-      dispatch(stopSubmit('registration', {_error: msg}));
-    }
-  }
-}
-
-export const logoutThunk = () => {
-  return (dispatch) => {
-    authAPI.unSetHeaderToken()
-    authAPI.unSetStorageToken()
-    dispatch(toggleLoggedStatus(false))
   }
 }
 

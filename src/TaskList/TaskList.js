@@ -31,7 +31,15 @@ const TaskList = (
       <div className="row">
         <div className="col-lg-12">
           <div className="list-group">
-            {tasksEl}
+            {
+              tasksEl.length > 0
+                ?
+                tasksEl
+                :
+                <div className="mt-5 alert alert-secondary text-center">
+                  You don't have any tasks
+                </div>
+            }
           </div>
         </div>
       </div>
