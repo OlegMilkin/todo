@@ -66,7 +66,7 @@ const Header = (props) => {
 
 let mapStateToProps = (state) => {
   return {
-    isLogged: state.taskList.isLogged
+    isLogged: state.auth.isLogged
   }
 }
 

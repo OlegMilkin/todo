@@ -1,6 +1,7 @@
 import React from 'react'
 import TaskItem from '../TaskItem/TaskItem'
 import NewTaskForm from '../NewTaskForm/NewTaskForm'
+import { Redirect } from "react-router-dom";
 
 const TaskList = (
   {
@@ -8,7 +9,8 @@ const TaskList = (
     removeThunk,
     addTaskThunk,
     updateStatusThunk,
-    changeTaskTitleThunk
+    changeTaskTitleThunk,
+    isLogged
   }
 ) => {
 
@@ -25,6 +27,10 @@ const TaskList = (
       />
     )
   })
+
+  if (!isLogged) {
+    return <Redirect to="/auth" />
+  }
 
   return (
     <div className="container">

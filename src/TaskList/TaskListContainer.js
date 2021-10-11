@@ -8,7 +8,6 @@ import {
   changeTaskTitleThunk
 } from '../redux/task-list-reducer'
 import TaskList from './TaskList'
-import { Redirect } from 'react-router-dom'
 
 class TaskListContainer extends React.Component {
 
@@ -26,10 +25,6 @@ class TaskListContainer extends React.Component {
       isLogged
     } = this.props
 
-    if (!isLogged) {
-      return <Redirect to="/auth" />
-    }
-
     return (
       <TaskList
         taskList={taskList}
@@ -37,6 +32,7 @@ class TaskListContainer extends React.Component {
         addTaskThunk={addTaskThunk}
         updateStatusThunk={updateStatusThunk}
         changeTaskTitleThunk={changeTaskTitleThunk}
+        isLogged={isLogged}
       />
     )
   }
@@ -45,6 +41,7 @@ class TaskListContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     taskList: state.taskList.tasksData,
+    isLogged: state.auth.isLogged,
   }
 };
 

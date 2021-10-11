@@ -20,33 +20,15 @@
     },
     {
       "title": "User2 task2",
-      "completed": true,
+      "completed": false,
       "id": 7,
       "userId": 2
-    },
-    {
-      "title": "User1 task3",
-      "completed": false,
-      "id": 9,
-      "userId": 1
-    },
-    {
-      "title": "User1 task5",
-      "completed": true,
-      "userId": 1,
-      "id": 11
     },
     {
       "title": "User2 task3",
       "completed": false,
       "userId": 2,
-      "id": 12
-    },
-    {
-      "title": "dfdf",
-      "completed": false,
-      "userId": 1,
-      "id": 14
+      "id": 8
     }
   ],
   "users": [
@@ -56,8 +38,8 @@
       "id": 1
     },
     {
-      "email": "fgdfgdfg@fdgdfg.com",
-      "password": "$2a$10$VN7diS4/PcOOaXBtFeYzd.1W1hq6GFfB3iowQjqB/2rvv5Sul5Ura",
+      "email": "oleg@gmail.com",
+      "password": "$2a$10$EkUDwJ7AVd0gLTZPZttJxO0nm34RgwxVpZcapawuxl7YTSsaIE88i",
       "id": 2
     }
   ]

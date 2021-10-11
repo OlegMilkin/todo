@@ -1,28 +1,17 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Login from './Login'
 import { loginThunk } from '../../redux/auth-reducer'
 
 function LoginContainer(props) {
 
-  const {loginThunk, isLogged} = props
+  const { loginThunk } = props
 
   return (
     <Login
-      loginThunk={loginThunk}
-      isLogged={isLogged}
+      loginThunk={ loginThunk }
     />
   )
 }
 
-let mapStateToProps = (state) => {
-  return {
-    isLogged: state.auth.isLogged
-  }
-}
-
-export default connect(mapStateToProps,
-  {
-    loginThunk
-  }
-)(LoginContainer)
+export default connect(null, { loginThunk })(LoginContainer)
