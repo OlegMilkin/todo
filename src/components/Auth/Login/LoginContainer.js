@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Login from './Login'
-import { loginThunk } from '../../redux/auth-reducer'
+import { loginThunk } from '../../../redux/auth-reducer'
 
 function LoginContainer(props) {
 

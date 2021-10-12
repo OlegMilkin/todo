@@ -2,7 +2,7 @@ import React from "react"
 import './header.css'
 import { NavLink } from 'react-router-dom'
 import { connect } from "react-redux";
-import { logoutThunk } from '../redux/auth-reducer'
+import { logoutThunk } from '../../redux/auth-reducer'
 
 const Header = (props) => {
 

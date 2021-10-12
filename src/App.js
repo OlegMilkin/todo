@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Header from './Header/Header'
-import Auth from './Auth/Auth'
-import TaskListContainer from './TaskList/TaskListContainer'
+import Header from './components/Header/Header'
+import Auth from './components/Auth/Auth'
+import TaskListContainer from './components/TaskList/TaskListContainer'
 
 function App() {
   return (

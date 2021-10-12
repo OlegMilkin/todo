@@ -1,7 +1,9 @@
 import React from 'react'
+import {Redirect} from 'react-router-dom'
 import TaskItem from '../TaskItem/TaskItem'
 import NewTaskForm from '../NewTaskForm/NewTaskForm'
-import { Redirect } from "react-router-dom";
+import Loader from '../common/Loader/loader'
+
 
 const TaskList = (
   {
@@ -10,7 +12,8 @@ const TaskList = (
     addTaskThunk,
     updateStatusThunk,
     changeTaskTitleThunk,
-    isLogged
+    isLogged,
+    isLoadding
   }
 ) => {
 
@@ -29,7 +32,19 @@ const TaskList = (
   })
 
   if (!isLogged) {
-    return <Redirect to="/auth" />
+    return <Redirect to="/auth"/>
+  }
+
+  if (isLoadding) {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 text-center mt-5">
+            <Loader/>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (

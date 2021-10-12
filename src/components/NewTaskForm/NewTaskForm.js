@@ -7,6 +7,8 @@ const NewTaskForm = ({addTaskThunk}) => {
   let [newTaskText, setNewTaskText] = useState('')
 
   const addNewTask = () => {
+    if ( newTaskText === '') return
+
     addTaskThunk(inputTextField.current.value)
     setNewTaskText('')
   }
@@ -31,6 +33,7 @@ const NewTaskForm = ({addTaskThunk}) => {
           type="button"
           id="button-addon2"
           onClick={addNewTask}
+          disabled={newTaskText === ''}
         >
           ADD
         </button>

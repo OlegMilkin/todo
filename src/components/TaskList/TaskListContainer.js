@@ -6,13 +6,21 @@ import {
   addTaskThunk,
   updateStatusThunk,
   changeTaskTitleThunk
-} from '../redux/task-list-reducer'
+} from '../../redux/task-list-reducer'
 import TaskList from './TaskList'
 
 class TaskListContainer extends React.Component {
+  state = {
+    isLoading: true
+  }
 
   componentDidMount() {
-    this.props.getTasks()
+    let promise = this.props.getTasks()
+    Promise.all([promise]).then(() => {
+      this.setState({
+        isLoading: false
+      })
+    })
   }
 
   render() {
@@ -22,7 +30,7 @@ class TaskListContainer extends React.Component {
       addTaskThunk,
       updateStatusThunk,
       changeTaskTitleThunk,
-      isLogged
+      isLogged,
     } = this.props
 
     return (
@@ -33,6 +41,7 @@ class TaskListContainer extends React.Component {
         updateStatusThunk={updateStatusThunk}
         changeTaskTitleThunk={changeTaskTitleThunk}
         isLogged={isLogged}
+        isLoadding={this.state.isLoading}
       />
     )
   }
@@ -41,7 +50,7 @@ class TaskListContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     taskList: state.taskList.tasksData,
-    isLogged: state.auth.isLogged,
+    isLogged: state.auth.isLogged
   }
 };
 

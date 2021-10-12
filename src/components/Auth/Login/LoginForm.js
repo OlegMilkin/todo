@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import {required, email, renderField} from '../../helpers/validators'
+import {required, email, renderField} from '../../../helpers/validators'
 
-let RegistrationForm = ({handleSubmit, error}) => {
+let LoginForm = ({handleSubmit, error}) => {
   return (
     <form onSubmit={handleSubmit}>
       <div
@@ -13,7 +13,7 @@ let RegistrationForm = ({handleSubmit, error}) => {
         </div>
         }
         <label
-          htmlFor="register-email"
+          htmlFor="login-email"
           className="form-label"
         >
           Email address
@@ -24,14 +24,14 @@ let RegistrationForm = ({handleSubmit, error}) => {
           name={"email"}
           validate={[required, email]}
           className="form-control"
-          id="register-email"
+          id="login-email"
           type="text"
         />
       </div>
       <div
         className="mb-3">
         <label
-          htmlFor="register-password"
+          htmlFor="login-password"
           className="form-label"
         >
           Password
@@ -42,21 +42,21 @@ let RegistrationForm = ({handleSubmit, error}) => {
           name={"password"}
           validate={[required]}
           className="form-control"
-          id="register-password"
+          id="login-password"
           type="password"
         />
       </div>
       <button
         className="btn btn-success"
       >
-        Register
+        Login
       </button>
     </form>
   )
 }
 
-const RegistrationReduxForm = reduxForm({
-  form: 'registration'
-})(RegistrationForm)
+const LoginReduxForm = reduxForm({
+  form: 'login'
+})(LoginForm)
 
-export default RegistrationReduxForm
+export default LoginReduxForm
