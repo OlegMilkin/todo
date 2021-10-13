@@ -1,15 +1,18 @@
 import React, {useState} from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const NewTaskForm = ({addTaskThunk}) => {
 
   let inputTextField = React.createRef();
 
-  let [newTaskText, setNewTaskText] = useState('')
+  const [newTaskText, setNewTaskText] = useState('')
+  const [endDate, setEndDate] = useState(new Date())
 
   const addNewTask = () => {
     if ( newTaskText === '') return
 
-    addTaskThunk(inputTextField.current.value)
+    addTaskThunk(inputTextField.current.value, endDate)
     setNewTaskText('')
   }
 
@@ -27,6 +30,13 @@ const NewTaskForm = ({addTaskThunk}) => {
           onChange={changeNewTaskText}
           value={newTaskText}
           ref={inputTextField}
+        />
+        <DatePicker
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
+          className="form-control"
+          dateFormat="MM-dd-yyyy"
+          minDate={new Date()}
         />
         <button
           className="btn btn-outline-secondary"

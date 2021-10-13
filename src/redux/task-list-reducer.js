@@ -49,10 +49,11 @@ export const removeThunk = (taskId) => {
   }
 }
 
-export const addTaskThunk = (taskText) => {
+export const addTaskThunk = (taskText, endData) => {
   return async (dispatch) => {
     try {
-      await tasksAPI.addTaskItem(taskText)
+      const [month, day, year] = [endData.getMonth() + 1, endData.getDate(), endData.getFullYear()];
+      await tasksAPI.addTaskItem(taskText, `${month}-${day}-${year}`)
       dispatch(getTasks())
     } catch (error) {
       console.log(error)

@@ -14,12 +14,13 @@ export const tasksAPI = {
     return instance.delete(`tasksData/${taskId}`)
       .then(response => response.data)
   },
-  addTaskItem(taskText) {
+  addTaskItem(taskText, endData) {
     return instance.post('tasksData',
       {
         "title": taskText,
         "completed": false,
-        "userId": Number(getFromLocalStorage('userId'))
+        "userId": Number(getFromLocalStorage('userId')),
+        "endData": endData
       })
       .then(response => response.data)
   },
