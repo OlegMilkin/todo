@@ -31,6 +31,14 @@ const TaskList = (
     )
   })
 
+  const sortHighToLow = () => {
+    console.log(taskList.sort((a, b) => a.endData > b.endData ? 1 : -1))
+  }
+
+  const sortLowToHigh = () => {
+    console.log(taskList.sort((a, b) => a.endData < b.endData ? 1 : -1))
+  }
+
   if (!isLogged) {
     return <Redirect to="/auth"/>
   }
@@ -50,6 +58,40 @@ const TaskList = (
   return (
     <div className="container">
       <div className="row">
+        <div className="col-lg-12">
+          <div className="dropdown mb-3 float-end">
+            <button
+              className="btn btn-secondary dropdown-toggle btn-sm"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Sort
+            </button>
+            <ul
+              className="dropdown-menu dropdown-menu-end"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <li>
+                <span
+                  className="dropdown-item"
+                  onClick={ sortHighToLow }
+                >
+                  Data High to Low
+                </span>
+              </li>
+              <li>
+                <span
+                  className="dropdown-item"
+                  onClick={ sortLowToHigh }
+                >
+                  Data Low to High
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div className="col-lg-12">
           <div className="list-group">
             {
