@@ -8,6 +8,8 @@ import {
   changeTaskTitleThunk
 } from '../../redux/task-list-reducer'
 import TaskList from './TaskList'
+import Sidebar from "../Sidebar/Sidebar";
+import NewTaskForm from "../NewTaskForm/NewTaskForm";
 
 class TaskListContainer extends React.Component {
   state = {
@@ -34,15 +36,31 @@ class TaskListContainer extends React.Component {
     } = this.props
 
     return (
-      <TaskList
-        taskList={taskList}
-        removeThunk={removeThunk}
-        addTaskThunk={addTaskThunk}
-        updateStatusThunk={updateStatusThunk}
-        changeTaskTitleThunk={changeTaskTitleThunk}
-        isLogged={isLogged}
-        isLoadding={this.state.isLoading}
-      />
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12 mb-5">
+            <NewTaskForm
+              addTaskThunk={addTaskThunk}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-3 col-sm-12">
+            <Sidebar/>
+          </div>
+          <div className="col-lg-9 col-sm-12">
+              <TaskList
+                taskList={taskList}
+                removeThunk={removeThunk}
+                addTaskThunk={addTaskThunk}
+                updateStatusThunk={updateStatusThunk}
+                changeTaskTitleThunk={changeTaskTitleThunk}
+                isLogged={isLogged}
+                isLoadding={this.state.isLoading}
+              />
+          </div>
+        </div>
+      </div>
     )
   }
 }

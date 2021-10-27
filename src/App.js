@@ -8,7 +8,13 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
-      <Route exact path='/'>
+      <Route exact path='/today'>
+        <TaskListContainer/>
+      </Route>
+      <Route exact path='/next-7-days'>
+        <TaskListContainer/>
+      </Route>
+      <Route exact path='/inbox'>
         <TaskListContainer/>
       </Route>
       <Route path='/auth'>

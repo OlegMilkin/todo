@@ -25,10 +25,10 @@ export const setTasksDataAC = (tasks) => ({
   type: SET_TASKS_DATA, tasks
 })
 
-export const getTasks = () => {
+export const getTasks = (pathName) => {
   return async (dispatch) => {
     try {
-      let response = await tasksAPI.getTasks()
+      let response = await tasksAPI.getTasks(pathName)
       let userId = Number(getFromLocalStorage('userId'))
       let tasks = response.filter(task => task.userId === userId)
       dispatch(setTasksDataAC(tasks))

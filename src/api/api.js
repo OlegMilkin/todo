@@ -1,5 +1,6 @@
 import * as axios from 'axios'
-import { getFromLocalStorage } from '../helpers/local-storage'
+import {getFromLocalStorage} from '../helpers/local-storage'
+import { today, nextSevenDays } from '../helpers/data'
 
 const instance = axios.create({
   baseURL: 'http://localhost:3001/',
@@ -7,8 +8,18 @@ const instance = axios.create({
 
 export const tasksAPI = {
   getTasks() {
-    return instance.get('tasksData')
-      .then(response => response.data)
+    let pathName = window.location.pathname
+    switch (pathName) {
+      case '/today':
+        return instance.get(`tasksData?endData=${today}`)
+          .then(response => response.data)
+      case '/next-7-days':
+        return instance.get(`/tasksData?endData_gte=${today}_ne=${today}&endData_lte=${nextSevenDays}`)
+          .then(response => response.data)
+      default:
+        return instance.get('tasksData')
+          .then(response => response.data)
+    }
   },
   removeTask(taskId) {
     return instance.delete(`tasksData/${taskId}`)
@@ -47,13 +58,13 @@ export const authAPI = {
   },
   registerUser(email, password) {
     return instance.post('/register', {email, password})
-    .then(response => response.data)
+      .then(response => response.data)
   },
   setHeaderToken() {
     let authToken = localStorage.getItem('token')
     instance.defaults.headers.common['Authorization'] = `Bearer ${authToken}`
   },
   unSetHeaderToken() {
-      delete instance.defaults.headers.common['Authorization']
+    delete instance.defaults.headers.common['Authorization']
   }
 }

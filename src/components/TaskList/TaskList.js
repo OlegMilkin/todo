@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {Redirect} from 'react-router-dom'
 import TaskItem from '../TaskItem/TaskItem'
-import NewTaskForm from '../NewTaskForm/NewTaskForm'
 import Loader from '../common/Loader/loader'
 
 const TaskList = (
   {
     taskList,
     removeThunk,
-    addTaskThunk,
     updateStatusThunk,
     changeTaskTitleThunk,
     isLogged,
@@ -17,11 +15,15 @@ const TaskList = (
 ) => {
 
   let [tasks, setTasks] = useState(taskList)
-  let [searchString, setSearchString] = useState('')
+  let [isCompletedFilterActive, setIsCompletedFilterActive] = useState(false)
 
   useEffect(() => {
-    setTasks(taskList)
-  }, [taskList])
+    if(isCompletedFilterActive) {
+      setTasks(taskList.filter((task) => {return task.completed}))
+    } else {
+      setTasks(taskList)
+    }
+  }, [taskList, isCompletedFilterActive])
 
   const sortHighToLow = () => {
     let sortedTasks = [...tasks].sort((a, b) => a.endData < b.endData ? 1 : -1)
@@ -33,32 +35,9 @@ const TaskList = (
     setTasks(sortedTasks)
   }
 
-  const filterCompleted = () => {
-    let filteredTasks = tasks.filter((task) => {return task.completed})
-    setTasks(filteredTasks)
+  const toggleCompletedStatus = () => {
+    setIsCompletedFilterActive(!isCompletedFilterActive)
   }
-
-  const resetFilters = () => {
-    setTasks(taskList)
-    setSearchString('')
-  }
-
-  const onSearchChange = () => {
-    let searchValue = searchInput.current.value
-    setSearchString(searchValue)
-    sortIncludedString(searchValue)
-  }
-
-  const sortIncludedString = (value) => {
-
-    let filteredTasks = tasks.filter((task) => {
-      return task.title.toLowerCase().includes(value.toLowerCase())
-    })
-
-    setTasks(filteredTasks)
-  }
-
-  let searchInput = React.createRef();
 
   if (!isLogged) {
     return <Redirect to="/auth"/>
@@ -77,21 +56,10 @@ const TaskList = (
   }
 
   return (
-    <div className="container">
+    <>
       <div className="row">
-        <div className="col-lg-12 mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Find some task"
-            value={ searchString }
-            onChange={ onSearchChange }
-            ref={ searchInput }
-          />
-        </div>
         <div className="col-lg-12">
-          <button className="btn btn-success" onClick={ filterCompleted }>Completed</button>&nbsp;
-          <button className="btn btn-success" onClick={ resetFilters }>Reset</button>
+          <button className="btn btn-success" onClick={ toggleCompletedStatus }>Completed</button>&nbsp;
           <div className="dropdown mb-3 float-end">
             <button
               className="btn btn-secondary dropdown-toggle btn-sm"
@@ -152,14 +120,7 @@ const TaskList = (
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-12 mt-5">
-          <NewTaskForm
-            addTaskThunk={addTaskThunk}
-          />
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
 

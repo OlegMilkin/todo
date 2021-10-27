@@ -11,7 +11,7 @@ class Auth extends React.Component {
         {
           this.props.isLogged
             ?
-            <Redirect to="/"/>
+            <Redirect to="/today"/>
             :
             <div className="container">
               <div className="row">

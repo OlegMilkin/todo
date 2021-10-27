@@ -15,7 +15,7 @@ const Header = (props) => {
       <div className="container">
         <NavLink
           className="navbar-brand"
-          to='/'
+          to='/today'
         >
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMCqW1OuIKW2TyHKRrmjB7I2dy7aaFHktOSJoF2_fR6rBbtXZC8KryZgQWKxL8ResD8Bs&usqp=CAU"
