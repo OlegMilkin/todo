@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import {Redirect} from 'react-router-dom'
-import TaskItem from '../TaskItem/TaskItem'
 import Loader from '../common/Loader/loader'
+import {useSelector} from "react-redux";
+import TaskItem from "../TaskItem/TaskItem";
 
 const TaskList = (
   {
     taskList,
-    removeThunk,
-    updateStatusThunk,
-    changeTaskTitleThunk,
-    isLogged,
     isLoadding
   }
 ) => {
+
+  const isLogged = useSelector((state) => state.auth.isLogged)
 
   let [tasks, setTasks] = useState(taskList)
   let [isCompletedFilterActive, setIsCompletedFilterActive] = useState(false)
@@ -106,9 +105,6 @@ const TaskList = (
                       key={task.id}
                       title={task.title}
                       isTaskCompleted={task.completed}
-                      removeThunk={removeThunk}
-                      updateStatusThunk={updateStatusThunk}
-                      changeTaskTitleThunk={changeTaskTitleThunk}
                     />
                   )
                 })

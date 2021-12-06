@@ -1,25 +1,26 @@
 import React, {useState} from 'react'
 import classes from './list-item.module.css'
+import {useDispatch} from "react-redux";
+import {removeThunk, updateStatusThunk, changeTaskTitleThunk} from "../../redux/task-list-reducer";
 
 const TaskItem = (
   {
     title,
-    changeTaskTitleThunk,
     taskItem,
-    updateStatusThunk,
     isTaskCompleted,
-    removeThunk
   }
 ) => {
 
   const editInput = React.createRef();
+
+  const dispatch = useDispatch()
 
   let [isEditMode, setEditMode] = useState(false)
   let [newTaskText, setNewTaskText] = useState(title)
 
   const disableEditMode = () => {
     setEditMode(false)
-    changeTaskTitleThunk(taskItem.id, newTaskText)
+    dispatch(changeTaskTitleThunk(taskItem.id, newTaskText))
   }
 
   const enableEditMode = () => {
@@ -31,7 +32,7 @@ const TaskItem = (
   }
 
   const completeToggle = () => {
-    updateStatusThunk(taskItem)
+    dispatch(updateStatusThunk(taskItem))
   }
 
   let labelCompleteClass = isTaskCompleted
@@ -68,7 +69,7 @@ const TaskItem = (
       <button
         className={classes.listItemRemove}
         onClick={() => {
-          removeThunk(taskItem.id)
+          dispatch(removeThunk(taskItem.id))
         }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash"

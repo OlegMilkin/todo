@@ -1,18 +1,22 @@
 import React, {useState} from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import {useDispatch} from 'react-redux'
+import {addTaskThunk} from '../../redux/task-list-reducer'
 
-const NewTaskForm = ({addTaskThunk}) => {
+const NewTaskForm = () => {
 
   let inputTextField = React.createRef();
 
   const [newTaskText, setNewTaskText] = useState('')
   const [endDate, setEndDate] = useState(new Date())
 
+  const dispatch = useDispatch()
+
   const addNewTask = () => {
     if ( newTaskText === '') return
 
-    addTaskThunk(inputTextField.current.value, endDate)
+    dispatch(addTaskThunk(inputTextField.current.value, endDate))
     setNewTaskText('')
   }
 
