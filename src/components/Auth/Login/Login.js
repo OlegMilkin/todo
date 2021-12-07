@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginReduxForm from './LoginForm'
-import {loginThunk} from "../../../redux/auth-reducer";
-import {useDispatch} from "react-redux";
+import { loginThunk } from '../../../redux/auth-reducer'
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
 
@@ -18,4 +18,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default Login

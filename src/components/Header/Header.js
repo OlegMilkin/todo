@@ -1,14 +1,18 @@
-import React from "react"
-import './header.css'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux'
 import { logoutThunk } from '../../redux/auth-reducer'
+import './header.css'
 
-const Header = (props) => {
+const Header = () => {
+
+  const dispatch = useDispatch()
 
   const logoutHandler = () => {
-    props.logoutThunk()
+    dispatch(logoutThunk())
   }
+
+  const isLogged = useSelector((state) => state.auth.isLogged)
 
   return (
     <nav className="header navbar navbar-expand-lg navbar-light">
@@ -40,7 +44,7 @@ const Header = (props) => {
         >
           <div className="navbar-nav">
             {
-              props.isLogged
+              isLogged
               ?
                 <button
                   className="btn"
@@ -64,10 +68,4 @@ const Header = (props) => {
   )
 }
 
-let mapStateToProps = (state) => {
-  return {
-    isLogged: state.auth.isLogged
-  }
-}
-
-export default connect(mapStateToProps, {logoutThunk})(Header)
+export default Header

@@ -1,7 +1,7 @@
 import React from 'react'
 import RegistrationReduxForm from './RegistrationForm'
 import {registerThunk} from '../../../redux/auth-reducer'
-import {useDispatch} from "react-redux";
+import {useDispatch} from 'react-redux'
 
 const Registration = () => {
 
@@ -18,4 +18,4 @@ const Registration = () => {
   )
 }
 
-export default Registration;
+export default Registration

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import {required, email, renderField} from '../../../helpers/validators'
+import { required, email, renderField } from '../../../helpers/validators'
 
 let LoginForm = ({handleSubmit, error}) => {
   return (

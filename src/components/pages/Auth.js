@@ -1,8 +1,8 @@
 import React from 'react'
 import Login from '../Auth/Login/Login'
 import Registration from '../Auth/Registration/Registration'
-import {Redirect} from 'react-router-dom'
-import {useSelector} from "react-redux";
+import { Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Auth = () => {
   const isLogged = useSelector((state) => state.auth.isLogged)

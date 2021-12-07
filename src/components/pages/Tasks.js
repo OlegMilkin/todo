@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import NewTaskForm from "../NewTaskForm/NewTaskForm";
-import Sidebar from "../Sidebar/Sidebar";
-import TaskList from "../TaskList/TaskList";
-import {useDispatch, useSelector} from "react-redux";
-import {getTasks} from "../../redux/task-list-reducer";
+import React, { useEffect, useState } from 'react'
+import NewTaskForm from '../NewTaskForm/NewTaskForm'
+import Sidebar from '../Sidebar/Sidebar'
+import TaskList from '../TaskList/TaskList'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTasks } from '../../redux/task-list-reducer'
 
 const Tasks = () => {
 

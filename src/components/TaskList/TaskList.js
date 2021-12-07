@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import {Redirect} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import Loader from '../common/Loader/loader'
-import {useSelector} from "react-redux";
-import TaskItem from "../TaskItem/TaskItem";
+import { useSelector } from 'react-redux'
+import TaskItem from '../TaskItem/TaskItem'
 
 const TaskList = (
   {
@@ -100,7 +100,6 @@ const TaskList = (
             {
               tasks.length > 0
                 ?
-
                 tasks.map((task) => {
                   return (
                     <TaskItem

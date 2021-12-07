@@ -56,4 +56,4 @@ const NewTaskForm = () => {
   )
 }
 
-export default NewTaskForm;
+export default NewTaskForm

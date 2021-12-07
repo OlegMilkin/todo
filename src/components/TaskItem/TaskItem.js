@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import classes from './list-item.module.css'
-import {useDispatch} from "react-redux";
-import {removeThunk, updateStatusThunk, changeTaskTitleThunk} from "../../redux/task-list-reducer";
+import { useDispatch } from 'react-redux'
+import { removeThunk, updateStatusThunk, changeTaskTitleThunk } from '../../redux/task-list-reducer'
 
 const TaskItem = (
   {
@@ -11,7 +11,7 @@ const TaskItem = (
   }
 ) => {
 
-  const editInput = React.createRef();
+  const editInput = useRef();
 
   const dispatch = useDispatch()
 
@@ -97,4 +97,4 @@ const TaskItem = (
   )
 }
 
-export default TaskItem;
+export default TaskItem
