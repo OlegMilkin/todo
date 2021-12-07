@@ -17,8 +17,10 @@ const TaskList = (
   let [isCompletedFilterActive, setIsCompletedFilterActive] = useState(false)
 
   useEffect(() => {
-    if(isCompletedFilterActive) {
-      setTasks(taskList.filter((task) => {return task.completed}))
+    if (isCompletedFilterActive) {
+      setTasks(taskList.filter((task) => {
+        return task.completed
+      }))
     } else {
       setTasks(taskList)
     }
@@ -58,7 +60,8 @@ const TaskList = (
     <>
       <div className="row">
         <div className="col-lg-12">
-          <button className="btn btn-success" onClick={ toggleCompletedStatus }>Completed</button>&nbsp;
+          <button className="btn btn-success" onClick={toggleCompletedStatus}>Completed</button>
+          &nbsp;
           <div className="dropdown mb-3 float-end">
             <button
               className="btn btn-secondary dropdown-toggle btn-sm"
@@ -76,7 +79,7 @@ const TaskList = (
               <li>
                 <span
                   className="dropdown-item"
-                  onClick={ sortHighToLow }
+                  onClick={sortHighToLow}
                 >
                   Data High to Low
                 </span>
@@ -84,7 +87,7 @@ const TaskList = (
               <li>
                 <span
                   className="dropdown-item"
-                  onClick={ sortLowToHigh }
+                  onClick={sortLowToHigh}
                 >
                   Data Low to High
                 </span>

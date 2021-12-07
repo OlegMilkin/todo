@@ -133,6 +133,11 @@
       "email": "gfhghjghj@fghfgh.com",
       "password": "$2a$10$LocyjkInBBVZTYY2EXs.K.vbBDWTUenYUiS55hzW5ODOKcwwXFUb2",
       "id": 4
+    },
+    {
+      "email": "ggg@dfg.com",
+      "password": "$2a$10$EPQFwNXqY8QnPlXkc5MScusom.J94ZdlSSSQmVt/3Kuf98kjPf7cK",
+      "id": 5
     }
   ]
 }

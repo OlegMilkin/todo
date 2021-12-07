@@ -1,10 +1,14 @@
 import React from 'react'
 import LoginReduxForm from './LoginForm'
+import {loginThunk} from "../../../redux/auth-reducer";
+import {useDispatch} from "react-redux";
 
-const Login = (props) => {
+const Login = () => {
+
+  const dispatch = useDispatch()
 
   const submit = (values) => {
-    props.loginThunk(values.email, values.password)
+    dispatch(loginThunk(values.email, values.password))
   }
 
   return (

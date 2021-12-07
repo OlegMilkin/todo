@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
-import Auth from './components/Auth/Auth'
+import Auth from './components/pages/Auth'
 import Tasks from './components/pages/Tasks'
 
 function App() {
